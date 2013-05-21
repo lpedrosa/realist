@@ -1,0 +1,89 @@
+View Model
+
+- 2 aux objects, FlightDeal and FlightResult
+
+===
+FlightDeal
+===
+- wasViewed: Boolean
+- cheapestPrice: Double // not needed, can pull from cheapest result (was used for caching?)
+- cheapestResult: FlightResult
+- otherResults: KnockoutArray[FlightResult]
+
+- attrs from kictrip's json // not needed, should be in FlightResult
+
+- util func:
+  * hasMoreProviders - returns true if it has more than one flight in results array
+  * getRemainingAirlines -  returns a String containing all of the flight's airlines
+  * addFlightResult - adds a flight to this object, setting the new cheapest result.
+
+==
+FlightResult
+==
+- json attrs 
+
+
+==============================
+===
+trait Filter
+===
+
+- name: String
+- predicate:  FlightResult => Boolean
+- shrunk(change to recalculate): Filter => Boolean // if after applying the filter the result set is smaller
+
+- may contain additional values used in predicate and shrunk
+
+===
+Filter Chain
+===
+
+- filters: map[String,Filter] // maps name to filter object
+- needsRestartFilters: Filter => boolean // if the given filter constraints the result set even more, no filter restart is needed
+- getFilterCallBacks: () => (FlightResult => Boolean)[]
+
+===============================
+
+===
+View Model
+===
+
+- supplierLogoMap: map[String,String?]
+- departureAirportMap: map[String,String?]
+- destinationAirportMap: map[String,String?]
+- airlineMap: map[String,String?]
+
+- flightSearchId: Int
+- flightDeals: KnockoutArray[FlightDeal] // json data gets pushed here
+
+- departureAirports: KnockoutArray[?]
+- destinationAirports: KnockoutArray[?]
+- airlines: KnockoutArray[?]  
+
+- totalNumOfResults: KnockoutComputed[Int] // lenght of flightDeals (should be totalNumResultsSoFar)
+
+- showingFlexibleDate: Boolean
+
+///// ignoring filter engine for now - should be pluggable?
+///// ignoring pagination logic for now - should be pluggable?
+///// ignoring progress bar logic for now - should be pluggable?
+
+- addDeals: JSON => () // adds deals to flightDeals and does some other magic
+  * for each deal found
+  * goes to each deal in array and see if they match
+    * if so adds as child and stops the iteration
+  * if it didn't match create new one
+  * while creating also attach click event for moreResults (for efficiency, but urghh....)
+    * this logic could go to the FlightDeal object
+  
+  * FILTER LOGIC: adds airports to the maps so they can be used by the filters (not really related to add deal logic)
+  * sorts the array flightDeals
+  * PROGRESS BAR LOGIC: adds 1 to completeSuppliers observable
+
+
+===
+Util
+===
+
+Bunch of stuff in the end that should go into an util module specific for flights page 
+(e.g. slider declaration, event binding, etc...)

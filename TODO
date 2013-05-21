@@ -1,0 +1,7 @@
+TODO
+
+- model Deal and Flight objects (test)
+- start view model and redo addDeal (test as well)
+- tackle filter logic
+- tackle pagination
+- tackle progressbar
