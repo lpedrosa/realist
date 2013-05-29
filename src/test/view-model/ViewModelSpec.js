@@ -22,10 +22,11 @@ describe('ViewModel', function() {
   it('has to contain a total number of offers corresponding to the test set', function() {
     realtimeResultsViewModel.addDeals(offers);
 
-    expect(realtimeResultsViewModel.getTotalOffers()).equals(offers.length);
+    expect(realtimeResultsViewModel.getTotalOffers()).toBe(offers.length);
+    expect(realtimeResultsViewModel.getDeals().length).toBe(3);
   });
 
   it('sorts the offers after it adds them to the view model', function () {
-    fail();
+    expect('method').toBe('defined');
   });
 });
