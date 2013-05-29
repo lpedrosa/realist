@@ -23,6 +23,8 @@ var realtimeResultsViewModel = (function() {
         } else {
           deals[cacheIndex].addTravelOffer(dealsIn[i]);
         }
+
+        totalOffers += 1;
       }
 
       // TODO sort the array
