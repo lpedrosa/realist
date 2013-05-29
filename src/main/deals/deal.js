@@ -6,9 +6,9 @@ var Deal = function(properties) {
 };
 
 Deal.prototype.addTravelOffer = function(offer) {
-  var offer =  offer | {};
+  var offer =  offer || {};
   var offerPrice =  offer.price && offer.price.amount;
-  var cheapestPrice = this.cheapestOffer && this.cheapestOffer.price && cheapestOffer.price.amount;
+  var cheapestPrice = this.cheapestOffer && this.cheapestOffer.price && this.cheapestOffer.price.amount;
   
   if(offerPrice !== undefined) {
     // set new cheapest
@@ -21,5 +21,5 @@ Deal.prototype.addTravelOffer = function(offer) {
 };
 
 Deal.prototype.displayCheapestPrice = function() {
-  return this.cheapestOffer && this.cheapestOffer.price && this.cheapestOffer.amount | 'No Price';
+  return this.cheapestOffer && this.cheapestOffer.price && this.cheapestOffer.amount || 'No Price';
 };
