@@ -31,11 +31,12 @@ var realtimeResultsViewModel = (function() {
       }
 
       // sort the array
+      // FIXME this should be pluggable as well
       deals.sort(function(a, b) {
         var aPrice = parseInt(a.cheapestOffer.price.amount, 10);
         var bPrice = parseInt(b.cheapestOffer.price.amount, 10);
 
-        return aPrice == bPrice ? 0 : aPrice > bPrice ? -1 : 1;
+        return aPrice == bPrice ? 0 : aPrice < bPrice ? -1 : 1;
       });
     },
 
@@ -44,7 +45,7 @@ var realtimeResultsViewModel = (function() {
     },
 
     getDeals: function() {
-      return deals();
+      return deals;
     },
 
     clearDeals: function() {

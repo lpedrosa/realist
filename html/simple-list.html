@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../style/example.css">
+    
+  </head>
+  <body>
+    <div id="list-holder">
+      <div id="left-panel-holder">
+        <div class="boxed pallete-1">
+          <p>Viewing <span class="results" data-bind="text: getTotalOffers()"></span> results</p>
+        </div>
+        <div id="filter-holder" class="boxed pallete-2">
+          <p>Filter widgets will go here</p>
+        </div>
+      </div>
+      <div id="right-panel-holder" class="pallete-3">
+        <div class="result boxed pallete-4">
+          <p>Results go here</p>
+        </div>
+        <div id="results-wrapper" data-bind="foreach: getDeals()">
+          <div class="result boxed pallete-4">
+            <div class="result-left"><p data-bind="text: cheapestOffer.name">Result name</p></div>
+            <div><p data-bind="text: displayCheapestPrice()">Value</p></div>
+            <div class="clear"></div>
+            <p style="font-size: 14px" data-bind="if: offers.length>1">+<span data-bind="text: offers.length-1"></span> result</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+    <!--    <script type="text/javascript" src="../lib/jquery-1.9.1.min.js"></script> -->
+    <script type="text/javascript" src="../lib/knockout-2.2.1.min.js"></script>
+
+    <script type="text/javascript" src="../src/main/deals/deal.js"></script>
+    <script type="text/javascript" src="../src/main/view-model/realtimeResultsVM.js"></script>
+
+    <script type="text/javascript">
+      var offers = [
+        {
+          name: 'Deal 1',
+          compoundTripId: '123D',
+          price: { amount: '100' }
+        },
+        {
+          name: 'Deal 2',
+          compoundTripId: '158G',
+          price: { amount: '50' }
+        },
+        {
+          name: 'Deal 3',
+          compoundTripId: '234F',
+          price: { amount: '20' }
+        },
+        {
+          name: 'Deal 4',
+          compoundTripId: '123D',
+          price: { amount: '95' }
+        }
+      ];
+      realtimeResultsViewModel.addDeals(offers);
+      ko.applyBindings(realtimeResultsViewModel);
+    </script>
+  </body>
+</html>

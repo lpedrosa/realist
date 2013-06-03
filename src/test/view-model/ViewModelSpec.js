@@ -19,20 +19,20 @@ describe('ViewModel', function() {
   ];
 
   var isSortedAscending = function(array) {
-    function checkSorted(array, lastElement) {
-      if(array.length === 0) {
+    function checkSorted(array, pos, lastElement) {
+      if(array.length === pos) {
         return true;
       } else {
-        var poppedElement = array.pop();
+        var poppedElement = array[pos];
         if(lastElement === undefined || parseInt(lastElement.cheapestOffer.price.amount, 10) < parseInt(poppedElement.cheapestOffer.price.amount, 10)) {
-          return checkSorted(array, poppedElement);
+          return checkSorted(array, pos + 1, poppedElement);
         } else { 
           return false; 
         }
       }
     }
 
-    return checkSorted(array);
+    return checkSorted(array, 0);
   };
 
   beforeEach(function() {
@@ -43,12 +43,12 @@ describe('ViewModel', function() {
     realtimeResultsViewModel.addDeals(offers);
 
     expect(realtimeResultsViewModel.getTotalOffers()).toBe(offers.length);
-    expect(realtimeResultsViewModel.getDeals().length).toBe(3);
+    expect(realtimeResultsViewModel.getDeals()().length).toBe(3);
   });
 
   it('sorts the offers after it adds them to the view model', function() {
     realtimeResultsViewModel.addDeals(offers);
     
-    expect(isSortedAscending(realtimeResultsViewModel.getDeals())).toBe(true);
+    expect(isSortedAscending(realtimeResultsViewModel.getDeals()())).toBe(true);
   });
 });
