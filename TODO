@@ -1,7 +1,7 @@
 TODO
 
 - model Deal and Flight objects (test) ------- DONE
-- start view model and redo addDeal (test as well) 
+- start view model and redo addDeal (test as well) ---- DONE
 
 ! Deal object is domain specific. Should not be included in final module.
 ! Make view model expandable and generic (e.g. item instead of deal, addDeal function can be mixed in)
