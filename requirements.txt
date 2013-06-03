@@ -1,0 +1,50 @@
+realist
+==
+
+Basic Functionality:
+=====
+
+To create a simple sortable list one just needs to specify the sortable param of the input data and sort type:
+
+-- e.g. realist({ sortOrder: 'ascending', sortable: function(item) { return item.amount } }); --
+
+After this you should get a rich list app which you can:
+
+* push items to and will get automatically sorted based on the specified order and element
+
+
+Customize the List:
+=====
+
+With the simple list set up you can do other cool stuff such as:
+
+1 - set up pagination (use built in one or plug your own)
+2 - set up filters that are triggered by events (use built in filters or your own)
+
+For version 0.1:
+==
+
+- simple built in addItem function (sorts if quantifier and sort method are present)
+- ascending and descending sort utility methods
+- plug your own sort method
+- simple list management methods (clear, items, totalItemCount)
+- modular architecture (some stuff transparent to user)
+
+For version 0.2:
+==
+
+- ability to set polling data source (url) [XMLHttpRequest ftw???]
+- simple numbered pagination built-in
+- ability to plug your own pagination
+
+For version 0.3:
+==
+
+- handle filtering over item list (filterEngine)
+- simple quantifier filtering
+- plug you own filter (needs to respect interface if it uses realist filter engine)
+
+For version 0.4:
+==
+
+- ...
