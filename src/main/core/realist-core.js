@@ -26,7 +26,7 @@
 
       for(var i = 0, propSize = properties.length; i < propSize; i += 1) {
         if(result.hasOwnProperty(properties[i])) {
-          result = obj.properties[i];
+          result = obj[properties[i]];
         } else {
           return;
         }
@@ -74,7 +74,7 @@
         }
 
         // sort items
-        //_items.sort(_fn.sort);
+        _items.sort(_fn.sort);
       },
 
       // Get the underlying knockout array that holds the list's items
