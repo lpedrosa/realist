@@ -3,6 +3,8 @@
  *
  */
 (function(window) {
+
+  "use strict";
   
   var realist = function(initProperties){
 
