@@ -115,8 +115,12 @@
        *
        * @param {string} order The ordering used by the sort function
        */
-      setSortOrder: function(order) {
+      setOrdering: function(order) {
         _properties.sortOrder = order;
+      },
+
+      setSortFn: function(sortFn) {
+        _fn.sort = sortFn;
       }
     };
 

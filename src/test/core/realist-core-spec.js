@@ -44,8 +44,8 @@ describe('core', function () {
   });
 
   it('should sort correctly according to the given sort order', function() {
-    // set sort order to be descending rather then default (ascending)
-    testList.setSortOrder('descending');
+    // set ordering to be descending rather then default (ascending)
+    testList.setOrdering('descending');
     testList.addItems(items);
 
     var amountsSorted = getAmounts(testList.getItems());
