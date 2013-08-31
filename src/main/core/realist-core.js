@@ -13,11 +13,12 @@
     // Main container for the items
     var _items = [];
 
-    // Property that quantifies an item
-    var _quantifier = _properties.quantifier; 
-
     // Property that holds all private functions
     var _fn = {};
+
+    // Quantifier function. Takes an item and returns
+    // a value used for sorting items in this list
+    _fn.quantifier = _properties.quantifier; 
 
     // Gets object properties by the given string
     var getObjectProperty = function(obj, prop) {
@@ -40,16 +41,13 @@
     // Sorting
 
     _fn.sort = _properties.sort || function(item1, item2) {
-      // TODO perform checks on quantifier's type
-      // TODO signal error if cannot fetch quantifiable property
       
       // check if sortOrder is ok
       // TODO should signal error if not an accepted value
       var sortOrder = _properties.sortOrder || 'ascending';
 
-      // for now I assume it is an integer
-      var quantifierVal1 = getObjectProperty(item1, _quantifier);
-      var quantifierVal2 = getObjectProperty(item2, _quantifier);
+      var quantifierVal1 = _fn.quantifier(item1);
+      var quantifierVal2 = _fn.quantifier(item2);
 
       if(quantifierVal1 === quantifierVal2) {
         return 0;

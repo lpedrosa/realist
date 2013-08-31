@@ -1,4 +1,7 @@
+/* global describe:false, it:false, beforeEach:false, expect:false, realist:false */
 describe('core', function () {
+
+  "use strict";
 
   var map = function(arr, fn) {
     var mappedArr = [];
@@ -6,7 +9,7 @@ describe('core', function () {
       mappedArr.push(fn(arr[i]));
     }
     return mappedArr;
-  }
+  };
 
   var items = [
     { amount: 10 },
@@ -15,12 +18,16 @@ describe('core', function () {
   ];
 
   var testList = realist({ 
-    quantifier: 'amount'
+    quantifier: function(item) { return item.amount; }
   });
 
   beforeEach(function() {
     testList.clearItems();
   });
+
+  //
+  // Tests
+  //
 
   it('should return an empty list after creation', function () {
     expect(testList.getItems().length).toBe(0);    
