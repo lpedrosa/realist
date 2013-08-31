@@ -26,23 +26,6 @@
      */
     _fn.quantifier = _properties.quantifier; 
 
-    // Gets object properties by the given string
-    var getObjectProperty = function(obj, prop) {
-      prop = prop.replace(/\[(\w+)\]/g, '.$1'); // handle array indexes 
-      prop = prop.replace(/^\./, '');           // strip a leading dot (just in case)
-      var properties = prop.split('.');
-      var result = obj;
-
-      for(var i = 0, propSize = properties.length; i < propSize; i += 1) {
-        if(result.hasOwnProperty(properties[i])) {
-          result = obj[properties[i]];
-        } else {
-          return;
-        }
-      }
-      return result;
-    };
-
     /*
      * Function used for sorting items in the list.
      * It can be provided by the user.
