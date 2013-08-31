@@ -17,6 +17,10 @@ describe('core', function () {
     { amount: 25 }
   ];
 
+  var getAmounts = function(arr) {
+    return map(arr, function(item) { return item.amount; });
+  };
+
   var testList = realist({ 
     quantifier: function(item) { return item.amount; }
   });
@@ -25,9 +29,7 @@ describe('core', function () {
     testList.clearItems();
   });
 
-  //
   // Tests
-  //
 
   it('should return an empty list after creation', function () {
     expect(testList.getItems().length).toBe(0);    
@@ -36,8 +38,18 @@ describe('core', function () {
   it('should sort the added items by the given quantifier', function() {
     testList.addItems(items);
 
-    var amountsSorted = map(testList.getItems(), function(item) { return item.amount || 0; });
+    var amountsSorted = getAmounts(testList.getItems());
     
     expect(amountsSorted).toEqual([5,10,25]);
   });
+
+  it('should sort correctly according to the given sort order', function() {
+    // set sort order to be descending rather then default (ascending)
+    testList.setSortOrder('descending');
+    testList.addItems(items);
+
+    var amountsSorted = getAmounts(testList.getItems());
+    expect(amountsSorted).toEqual([25,10,5]);
+  });
+
 });
