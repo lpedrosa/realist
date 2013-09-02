@@ -1,7 +1,8 @@
 /*
  * realist JavaScript library v0.1
- *
+ * 
  */
+/* global ko:false */
 (function(window) {
 
   "use strict";
@@ -11,7 +12,9 @@
     var _properties = initProperties || {};
 
     // Main container for the items
-    var _items = [];
+    var _items = ko.observableArray();
+    
+    var _itemsCount = ko.computed(function() { return _items().length; });
 
     // Property that holds all private functions
     var _fn = {};
@@ -82,15 +85,24 @@
        *
        * @return {array} The underlying array that holds the list's items
        */
-      getItems: function() { 
-        return _items;
+      items: function() { 
+        return _items();
       },
 
       /*
        * Clears all the item stored in the list
        */
-      clearItems: function() { 
-        _items = [];
+      clear: function() { 
+        _items = ko.observableArray();
+      },
+
+      /*
+       * Return a count of the list's items
+       * It reacts to inserts in list, so it forces the renderer to update
+       * @return {number}
+       */
+      count: function() {
+        return _itemsCount();
       },
 
       /*

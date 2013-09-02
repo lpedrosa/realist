@@ -26,19 +26,19 @@ describe('core', function () {
   });
 
   beforeEach(function() {
-    testList.clearItems();
+    testList.clear();
   });
 
   // Tests
 
   it('should return an empty list after creation', function () {
-    expect(testList.getItems().length).toBe(0);    
+    expect(testList.count()).toBe(0);    
   });
 
   it('should sort the added items by the given quantifier', function() {
     testList.addItems(items);
 
-    var amountsSorted = getAmounts(testList.getItems());
+    var amountsSorted = getAmounts(testList.items());
     
     expect(amountsSorted).toEqual([5,10,25]);
   });
@@ -48,7 +48,7 @@ describe('core', function () {
     testList.setOrdering('descending');
     testList.addItems(items);
 
-    var amountsSorted = getAmounts(testList.getItems());
+    var amountsSorted = getAmounts(testList.items());
     expect(amountsSorted).toEqual([25,10,5]);
   });
 
